@@ -5,8 +5,6 @@
 #         self.left = left
 #         self.right = right
 
-# We will check if the nodes are equal at any point of time. Till then we keep going right or left
-
 class Solution:   
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         
@@ -18,14 +16,14 @@ class Solution:
 
         if self.isSameTree(root,subRoot):
             return True
-        
-        leftSide = self.isSubtree(root.left,subRoot)
-        rightSide = self.isSubtree(root.right,subRoot)
 
-        return leftSide or rightSide
+        leftnodes = self.isSubtree(root.left,subRoot)
+        rightnodes = self.isSubtree(root.right, subRoot)
+
+        return leftnodes or rightnodes
 
     def isSameTree(self,p,q):
-
+                
         if not p and not q:
             return True
 
@@ -35,10 +33,8 @@ class Solution:
         if p.val != q.val:
             return False
 
-        leftTree = self.isSameTree(p.left,q.left)
-        rightTree = self.isSameTree(p.right,q.right)
+        lTree = self.isSameTree(p.left, q.left)
+        rTree = self.isSameTree(p.right, q.right)
 
-        return True if leftTree and rightTree else False
+        return True if lTree and rTree else False
         
-
-
